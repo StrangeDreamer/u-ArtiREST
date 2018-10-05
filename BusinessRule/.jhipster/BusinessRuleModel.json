@@ -1,0 +1,21 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessRuleClass",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "business_rule",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination",
+    "microserviceName": "BusinessRule",
+    "searchEngine": false
+}
