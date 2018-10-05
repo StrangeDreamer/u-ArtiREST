@@ -320,6 +320,8 @@ public class ProcessService {
             map.put("processModel", processModelInString);
             BusinessRuleModel firstRuleSatisfied = serviceClient.invokeHumanService(map);
             //return invokeHumanService(process, artifact, serviceModel, processModel);
+            log.debug("do after invoking human service line 323");
+            log.debug("first rule satisfied is" + firstRuleSatisfied);
             return afterInvokingHumanService(firstRuleSatisfied, process, artifact, serviceModel);
 
         } else if (serviceModel.type == ServiceType.INVOKE_SERVICE) {

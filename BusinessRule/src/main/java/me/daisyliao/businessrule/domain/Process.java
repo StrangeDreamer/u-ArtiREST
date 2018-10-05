@@ -1,5 +1,6 @@
 package me.daisyliao.businessrule.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -39,11 +40,11 @@ public class Process implements Serializable {
 
     @XmlElementWrapper(name = "serviceIds")
     @XmlElement(name = "serviceId")
-    private Set<String> serviceIds = new HashSet<>();
+    public Set<String> serviceIds = new HashSet<>();
 
     @XmlElementWrapper(name = "businessRuleIds")
     @XmlElement(name = "businessRuleIds")
-    private Set<String> businessRuleIds = new HashSet<>();
+    public Set<String> businessRuleIds = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {

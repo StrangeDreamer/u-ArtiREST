@@ -40,7 +40,7 @@ public class ServiceService {
 
     public BusinessRuleModel invokeHumanService(Process process, ServiceModel service, ProcessModel processModel) throws Exception {
 
-        Set<BusinessRuleModel> rules = findServiceRelatedRules(service.name, process);
+        Set<BusinessRuleModel> rules = findServiceRelatedRules(service.serviceClass, process);
 
         BusinessRuleModel firstRuleSatisfied = null;
         for (BusinessRuleModel rule : rules) {
@@ -73,13 +73,13 @@ public class ServiceService {
         return firstRuleSatisfied;
     }
 
-    public Set<BusinessRuleModel> findServiceRelatedRules(String serviceName, Process process) {
+    public Set<BusinessRuleModel> findServiceRelatedRules(String serviceClass, Process process) {
         Set<BusinessRuleModel> rules = new HashSet<>();
 
 //        for (BusinessRuleModel rule : processModel.businessRules) {
         for (String businessRuleId : process.businessRuleIds) {
             BusinessRuleModel rule = businessRuleClient.getBusinessRule(businessRuleId);
-            if (rule.action.service.equals(serviceName)) {
+            if (rule.action.service.equals(serviceClass)) {
                 rules.add(rule);
                 log.debug("findServiceRelatedRules");
             }
@@ -107,8 +107,6 @@ public class ServiceService {
 
         String processModelId = process.getProcessModelId();
         ProcessModel processModel = artifactModelClient.getProcessModelFromArtifactModelService(processModelId);
-        //log.debug("processModel", processModel.toString());
-        //for (BusinessRuleModel rule : processModel.businessRules) {
         for (String businessRuleId : process.businessRuleIds) {
             BusinessRuleModel rule = businessRuleClient.getBusinessRule(businessRuleId);
             if (rule.action == null) {
@@ -160,7 +158,7 @@ public class ServiceService {
 
         for (String serviceId : process.serviceIds) {
             ServiceModel service = findOne(serviceId);
-            if (!servicesWithRules.contains(service.name) || availables.contains(service.name)) {
+            if (!servicesWithRules.contains(service.serviceClass) || availables.contains(service.serviceClass)) {
                 services.add(service);
             }
         }

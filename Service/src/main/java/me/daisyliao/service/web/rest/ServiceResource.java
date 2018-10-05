@@ -50,10 +50,8 @@ public class ServiceResource {
     @RequestMapping(value = "/service/invoke_human_service",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    //真的要加timed吗？
     @Timed
     public ResponseEntity<BusinessRuleModel> invokeHumanService(@RequestParam Map<String, String> map)throws Exception{
-        log.debug("invoking human service");
 
         ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
