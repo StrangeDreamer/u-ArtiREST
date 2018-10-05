@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceClass",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "method",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inputArtifact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "outputArtifact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "service",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination",
+    "microserviceName": "Service",
+    "searchEngine": false
+}
