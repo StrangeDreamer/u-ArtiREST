@@ -1,0 +1,57 @@
+<div class="create-process-container">
+    <h2>Creating process</h2>
+    <jh-alert></jh-alert>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <h3>Select Business Rules</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr jh-sort="br" ascending="reverse" >
+                        <th></th>
+                        <th jh-sort-by="businessRuleClass"><span>Business Rule Class</span> <span class="glyphicon glyphicon-sort"></span></th>
+                        <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="businessRule in businessRules track by businessRule.id">
+                        <td><input type="radio" class="BR" name="br-{{businessRule.businessRuleClass}}" ng-model="selectedBR.class[businessRule.businessRuleClass].id" value={{businessRule.id}} ></td>
+                        <td><span>{{businessRule.businessRuleClass}}</span></td>
+                        <td>{{businessRule.name}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <h3>Select Services</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr jh-sort="svc" ascending="reverse">
+                        <th></th>
+                        <th jh-sort-by="serviceClass"><span>Service Class</span> <span class="glyphicon glyphicon-sort"></span></th>
+                        <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="service in services track by service.id">
+                        <td><input type="radio" class="Service" name="svc-{{service.serviceClass}}" ng-model="selectedService.class[service.serviceClass].id" value={{service.id}} ></td>
+                        <td><span>{{service.serviceClass}}</span></td>
+                        <td>{{service.name}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="onConfirm()">
+            Confirm
+        </button>
+    </div>
+</div>

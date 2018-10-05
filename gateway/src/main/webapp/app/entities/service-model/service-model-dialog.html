@@ -1,0 +1,81 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myServiceModelLabel">Create or edit a Service Model</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.serviceModel.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.serviceModel.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.serviceModel.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_serviceClass">Service Class</label>
+            <input type="text" class="form-control" name="serviceClass" id="field_serviceClass"
+                    ng-model="vm.serviceModel.serviceClass"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                    ng-model="vm.serviceModel.url"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_method">Method</label>
+            <select class="form-control" id="field_method" ng-options="item as item for item in allowedMethods" ng-model="vm.serviceModel.method"></select>
+            <!--<input type="text" class="form-control" name="method" id="field_method" ng-options="item as item for item in allowedMethods"-->
+                    <!--ng-model="vm.serviceModel.method"-->
+                    <!--/>-->
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_inputArtifact">Input Artifact</label>
+            <input type="text" class="form-control" name="inputArtifact" id="field_inputArtifact"
+                    ng-model="vm.serviceModel.inputArtifact"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_outputArtifact">Output Artifact</label>
+            <input type="text" class="form-control" name="outputArtifact" id="field_outputArtifact"
+                    ng-model="vm.serviceModel.outputArtifact"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="vm.serviceModel.comment"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_type">Type</label>
+            <select class="form-control" id="field_type" ng-options="item as item for item in allowedServiceTypes" ng-model="vm.serviceModel.type"></select>
+            <!--<input type="text" class="form-control" name="type" id="field_type"-->
+                    <!--ng-model="vm.serviceModel.type"-->
+                    <!--/>-->
+        </div>
+        <div class="form-group">
+            <label class="control-label">Input Params</label>
+            <input type="text" class="form-control" name="inputParams" placeholder="Split by comma ','"
+                   ng-model="inputParams"/>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

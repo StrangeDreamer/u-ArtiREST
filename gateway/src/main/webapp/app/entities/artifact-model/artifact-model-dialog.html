@@ -1,0 +1,126 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myArtifactModelLabel">Create or edit a Artifact Model</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.artifactModel.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.artifactModel.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.artifactModel.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="vm.artifactModel.comment"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" >Attributes</label>
+            <div class="row">
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="Name" ng-model="attribute.name" /> </div>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="Comment" ng-model="attribute.comment" /> </div>
+                <div class="col-sm-3">
+                    <!--<input type="text" class="form-control" placeholder="Type" ng-model="attribute.type" />-->
+                    <select class="form-control" ng-model="attribute.type" ng-options="type as type for type in attributeTypes"></select>
+                </div>
+                <div class="col-sm-3"><button type="button" class="btn btn-success" ng-click="addAttribute(attribute)">Add</button> </div>
+            </div>
+            <table class="table table-striped" ng-show="artifactModel.attributes.length > 0">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Comment</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tr ng-repeat="attribute in artifactModel.attributes">
+                    <td>{{attribute.name}}</td>
+                    <td>{{attribute.comment}}</td>
+                    <td>{{attribute.type}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="removeAttribute(attribute)">Remove</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <label class="control-label" >States</label>
+            <div class="row">
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="Name" ng-model="state.name" /> </div>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="Comment" ng-model="state.comment" /> </div>
+                <div class="col-sm-2">
+                    <!--<input type="text" class="form-control" placeholder="Type" ng-model="attribute.type" />-->
+                    <select class="form-control" ng-model="state.type" ng-options="type as type for type in stateTypes"></select>
+                </div>
+                <div class="col-sm-2">
+                    <input class="form-control" ng-model="state.nextStates" placeholder="Next states" />
+                </div>
+                <div class="col-sm-2"><button type="button" class="btn btn-success" ng-click="addState(state)">Add</button> </div>
+            </div>
+            <table class="table table-striped" ng-show="artifactModel.states.length > 0">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Comment</th>
+                    <th>Type</th>
+                    <th>Next states</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tr ng-repeat="state in artifactModel.states">
+                    <td>{{state.name}}</td>
+                    <td>{{state.comment}}</td>
+                    <td>{{state.type}}</td>
+                    <td>
+                        <span class="label label-primary" ng-repeat="next in state.nextStates" style="margin-right: 5px;">{{next}}</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="removeState(state)">Remove</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" for="field_createdAt">Created At</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_createdAt" type="text" class="form-control" name="createdAt" datetime-picker="{{dateformat}}" ng-model="vm.artifactModel.createdAt" is-open="vm.datePickerOpenStatus.createdAt"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('createdAt')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" for="field_updatedAt">Updated At</label>-->
+                <!--<div class="input-group">-->
+                    <!--<input id="field_updatedAt" type="text" class="form-control" name="updatedAt" datetime-picker="{{dateformat}}" ng-model="vm.artifactModel.updatedAt" is-open="vm.datePickerOpenStatus.updatedAt"-->
+                    <!--/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button type="button" class="btn btn-default" ng-click="vm.openCalendar('updatedAt')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                    <!--</span>-->
+                <!--</div>-->
+        <!--</div>-->
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

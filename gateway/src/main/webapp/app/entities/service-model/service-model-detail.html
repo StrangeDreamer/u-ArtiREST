@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span>Service Model</span> {{vm.serviceModel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.name}}</span>
+        </dd>
+        <dt><span>Service Class</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.serviceClass}}</span>
+        </dd>
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.url}}</span>
+        </dd>
+        <dt><span>Method</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.method}}</span>
+        </dd>
+        <dt><span>Input Artifact</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.inputArtifact}}</span>
+        </dd>
+        <dt><span>Output Artifact</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.outputArtifact}}</span>
+        </dd>
+        <dt><span>Comment</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.comment}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{vm.serviceModel.type}}</span>
+        </dd>
+        <dt><span>InputParams</span></dt>
+        <dd>
+            <span ng-repeat="param in vm.serviceModel.inputParams">{{param}}, </span>
+            <span>{{vm.serviceModel.inputParams}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="service-model-detail.edit({id:vm.serviceModel.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
